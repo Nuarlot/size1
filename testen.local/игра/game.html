@@ -1,0 +1,94 @@
+<style>
+    #block{
+        width: 100px;
+        height: 100px;
+        background-color: green;
+    }
+
+    #ram{
+        
+        border: 2px solid black;
+        width: 1000px;
+        height: 800px;
+    }
+
+    #stena{
+        width: 100px;
+        height: 100px;
+        background-image: url(stena.jpg);
+        transform: translate(200px, -700px);
+    }
+
+</style>
+
+<div id="ram">
+    <div id="block"></div>
+    
+
+</div>
+
+<div id="stena"></div>
+
+<script>
+    if (localStorage.getItem("I") !== null) {
+        var I = Number(localStorage.getItem("I"))
+    } 
+    else {
+        var I = 0;
+        localStorage.setItem("I", 0)
+    
+    }
+
+
+    if (localStorage.getItem("Y") !== null) {
+        var Y = Number(localStorage.getItem("Y"))
+    } 
+    else {
+        var Y = 0;
+        localStorage.setItem("Y", 0)
+    }
+
+    var amount = 100;
+    
+    document.getElementById("block").style.transform = "translate(" + I + "px, " + I + "px)";
+    document.addEventListener('keydown', function (event){ 
+        switch (event.code){
+
+
+
+            case "ArrowUp":
+                if (I !== 200 || Y !== 200) {
+                    Y -= amount;
+                }
+                localStorage.setItem("Y", Y)
+                document.getElementById("block").style.transform = "translate(" + I + "px, " + Y + "px)";
+                break;
+
+            case "ArrowDown":
+                if (I !== 200 || Y !== 0) {
+                    Y += amount;
+                }
+                localStorage.setItem("Y", Y)
+                document.getElementById("block").style.transform = "translate(" + I + "px, " + Y + "px)";
+                break;
+
+            case "ArrowLeft":
+                if (I !== 300 || Y !== 100) {
+                    I -= amount;
+                }
+                localStorage.setItem("I", I)
+                document.getElementById("block").style.transform = "translate(" + I + "px, " + Y + "px)";
+                break;
+
+            case "ArrowRight":
+                if (I !== 100 || Y !== 100) {
+                    I += amount;
+                }
+                localStorage.setItem("I", I)
+                document.getElementById("block").style.transform = "translate(" + I + "px, " + Y + "px)";
+                break;
+        }
+
+    });
+
+</script>
